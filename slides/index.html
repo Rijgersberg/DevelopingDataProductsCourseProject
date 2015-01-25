@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gas usage for heating and outside temperature</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Gas usage for heating and outside temperature">
+  <meta name="author" content="Edwin Rijgersberg">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Gas usage for heating and outside temperature</h1>
+    <h2>A linear model for energy consumption</h2>
+    <p>Edwin Rijgersberg<br/>Coursera Student</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Predicting and evaluating gas usage</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Gas usage for heating in the Netherlands is strongly influenced by the weather</li>
+<li>Commonly, a linear model with so-called &quot;degree-days&quot; is used to model this effect.</li>
+<li>A day is assigned a number of degree-days based on the difference
+between the 24-hour average outside temperature and a ficticious temperature called
+the heating temperature, via the following formula:</li>
+</ul>
+
+<pre><code>degee_days = max(0, heating_temperature - outside_temperature)
+</code></pre>
+
+<ul>
+<li>Sensible comparison between gas consumptions in different periods can then be
+made by correcting for the number of degree-days in the period.</li>
+<li>We made a small app <a href="https://edwinrijgersberg.shinyapps.io/GasUsage/">on Shinyapps</a>
+which explores the effect of changing the <code>heating_temperature</code> parameter.</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Temperature in the Netherlands (1/2)</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>To give you an idea of the weather in the Netherlands, we plot the 24-hour average
+temperature in degrees C.</p>
+
+<pre><code class="r">library(ggplot2)
+temperatures &lt;- read.csv(&#39;data/temperature.csv&#39;)
+temperatures$date &lt;- as.POSIXct(strptime(temperatures$date, format=&quot;%Y-%m-%d&quot;))
+ggplot(temperatures, aes(date, temperature)) + geom_line()
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Temperature in the Netherlands (2/2)</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/fig/unnamed-chunk-2.png" alt="plot of chunk unnamed-chunk-2"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Data Sources</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The following data sources were used for this presentation and for the Shiny app:</p>
+
+<ol>
+<li><a href="https://www.liander.nl/over-liander/innovatie/open-data/data">Liander open data</a></li>
+<li><a href="http://www.knmi.nl/klimatologie/daggegevens/index.cgi">KNMI weather data</a></li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Predicting and evaluating gas usage'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Temperature in the Netherlands (1/2)'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Temperature in the Netherlands (2/2)'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Data Sources'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
