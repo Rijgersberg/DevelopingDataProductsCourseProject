@@ -13,7 +13,7 @@ knit        : slidify::knit2slides
 
 ## Predicting and evaluating gas usage
 
-- Gas usage for heating in the Netherlands is strongly influenced by the weather
+- Gas usage for heating in the Netherlands is strongly influenced by the weather.
 - Commonly, a linear model with so-called "degree-days" is used to model this effect.
 - A day is assigned a number of degree-days based on the difference
 between the 24-hour average outside temperature and a ficticious temperature called
